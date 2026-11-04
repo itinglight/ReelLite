@@ -77,8 +77,8 @@ brew install ffmpeg
 需要 macOS 14 以上，以及 Xcode 或 Xcode 命令行工具（`xcode-select --install`）。
 
 ```bash
-git clone https://github.com/itinglight/ffmpegtools.git
-cd ffmpegtools/mac-app
+git clone https://github.com/itinglight/ReelLite.git
+cd ReelLite/mac-app
 ./build_app.sh
 ```
 
@@ -191,8 +191,8 @@ cd mac-app && swift run
 Requirements: macOS 14+, Xcode command line tools, and `brew install ffmpeg`.
 
 ```bash
-git clone https://github.com/itinglight/ffmpegtools.git
-cd ffmpegtools/mac-app && ./build_app.sh   # → build/轻片.app
+git clone https://github.com/itinglight/ReelLite.git
+cd ReelLite/mac-app && ./build_app.sh   # → build/轻片.app
 ```
 
 The UI is currently in Simplified Chinese. Translations are welcome. Licensed under [MIT](LICENSE).
