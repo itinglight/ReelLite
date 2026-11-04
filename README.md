@@ -72,7 +72,13 @@ brew install ffmpeg
 
 > Homebrew 版 ffmpeg 已经包含 libvpx（VP8/VP9）、libaom（AV1）和 libwebp，不需要额外配置。
 
-### 2. 从源码构建
+### 2. 下载安装包
+
+到 [Releases](https://github.com/itinglight/ReelLite/releases) 下载最新的 `ReelLite-x.y.z.dmg`，打开后把「轻片」拖进「应用程序」文件夹。
+
+> 安装包没有经过 Apple 公证，第一次打开时请右键 → 打开，或运行 `xattr -dr com.apple.quarantine /Applications/轻片.app`。
+
+### 3. 从源码构建
 
 需要 macOS 14 以上，以及 Xcode 或 Xcode 命令行工具（`xcode-select --install`）。
 
@@ -82,7 +88,7 @@ cd ReelLite/mac-app
 ./build_app.sh
 ```
 
-构建完成后会生成 `mac-app/build/轻片.app`，拖进「应用程序」文件夹即可。
+构建完成后会生成 `mac-app/build/轻片.app`，拖进「应用程序」文件夹即可。想自己打 DMG 安装包的话运行 `VERSION=0.0.1 ./make_dmg.sh`。
 
 开发调试时可以直接运行：
 
@@ -137,6 +143,7 @@ cd mac-app && swift run
 ├── mac-app/                  # 轻片 macOS 应用（Swift Package）
 │   ├── Package.swift
 │   ├── build_app.sh          # 打包成 .app
+│   ├── make_dmg.sh           # 打包成 DMG 安装包
 │   ├── Resources/            # 应用图标
 │   ├── scripts/make_icon.*   # 用代码生成图标
 │   └── Sources/ReelLite/

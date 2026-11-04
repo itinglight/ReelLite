@@ -6,6 +6,8 @@ cd "$(dirname "$0")"
 APP_NAME="轻片"
 BIN_NAME="ReelLite"
 APP="build/${APP_NAME}.app"
+VERSION="${VERSION:-0.0.1}"
+BUILD_NUMBER="${BUILD_NUMBER:-1}"
 
 swift build -c release
 BIN_PATH="$(swift build -c release --show-bin-path)/${BIN_NAME}"
@@ -27,8 +29,8 @@ cat > "$APP/Contents/Info.plist" <<PLIST
   <key>CFBundleExecutable</key><string>${BIN_NAME}</string>
   <key>CFBundleIconFile</key><string>AppIcon</string>
   <key>CFBundlePackageType</key><string>APPL</string>
-  <key>CFBundleShortVersionString</key><string>1.0.0</string>
-  <key>CFBundleVersion</key><string>1</string>
+  <key>CFBundleShortVersionString</key><string>${VERSION}</string>
+  <key>CFBundleVersion</key><string>${BUILD_NUMBER}</string>
   <key>LSMinimumSystemVersion</key><string>14.0</string>
   <key>NSHighResolutionCapable</key><true/>
   <key>NSPrincipalClass</key><string>NSApplication</string>
