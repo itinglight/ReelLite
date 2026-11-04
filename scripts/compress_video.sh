@@ -16,7 +16,7 @@ center() {
 # 输入文件
 INPUT="$1"
 if [ -z "$INPUT" ]; then
-  echo "用法: ./compress_video.sh input_file"
+  echo "用法: ./scripts/compress_video.sh input_file"
   exit 1
 fi
 

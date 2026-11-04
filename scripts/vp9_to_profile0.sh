@@ -5,8 +5,8 @@ TARGET="$1"
 
 if [ -z "$TARGET" ]; then
   echo "用法:"
-  echo "  ./vp9_to_profile0.sh video.webm"
-  echo "  ./vp9_to_profile0.sh ./videos_dir"
+  echo "  ./scripts/vp9_to_profile0.sh video.webm"
+  echo "  ./scripts/vp9_to_profile0.sh ./videos_dir"
   exit 1
 fi
 

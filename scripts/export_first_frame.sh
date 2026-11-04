@@ -2,7 +2,7 @@
 
 INPUT="$1"
 if [ -z "$INPUT" ]; then
-  echo "用法: ./export_first_frame.sh video_file"
+  echo "用法: ./scripts/export_first_frame.sh video_file"
   exit 1
 fi
 

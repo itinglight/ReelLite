@@ -3,7 +3,7 @@
 FILE="$1"
 
 if [ -z "$FILE" ] || [ ! -f "$FILE" ]; then
-  echo "用法: ./video_inspect.sh video_file"
+  echo "用法: ./scripts/video_inspect.sh video_file"
   exit 1
 fi
 

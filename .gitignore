@@ -1,0 +1,11 @@
+# macOS
+.DS_Store
+
+# 脚本默认输出目录
+compressed_videos/
+
+# Swift / Xcode
+mac-app/.build/
+mac-app/build/
+mac-app/.swiftpm/
+*.xcodeproj/xcuserdata/
