@@ -4,7 +4,7 @@
 set -e
 cd "$(dirname "$0")"
 
-export VERSION="${VERSION:-0.0.1}"
+export VERSION="${VERSION:-0.0.2}"
 APP_NAME="轻片"
 DMG="build/ReelLite-${VERSION}.dmg"
 

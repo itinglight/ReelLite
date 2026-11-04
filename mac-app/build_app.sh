@@ -6,7 +6,7 @@ cd "$(dirname "$0")"
 APP_NAME="轻片"
 BIN_NAME="ReelLite"
 APP="build/${APP_NAME}.app"
-VERSION="${VERSION:-0.0.1}"
+VERSION="${VERSION:-0.0.2}"
 BUILD_NUMBER="${BUILD_NUMBER:-1}"
 
 swift build -c release

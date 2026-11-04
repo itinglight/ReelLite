@@ -12,6 +12,12 @@ struct ReelLiteApp: App {
         }
         .windowToolbarStyle(.unified)
 
+        .commands {
+            CommandGroup(after: .appInfo) {
+                Button("检查更新…") { Task { await Updater.shared.check(userInitiated: true) } }
+            }
+        }
+
         Settings {
             SettingsView()
         }
@@ -23,6 +29,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         // 通过 `swift run` 启动时没有 .app bundle，需要手动设为前台应用
         NSApp.setActivationPolicy(.regular)
         NSApp.activate(ignoringOtherApps: true)
+        Updater.shared.start()
+    }
+
+    func applicationWillTerminate(_ notification: Notification) {
+        Updater.shared.installOnQuitIfNeeded()
     }
 
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool { true }
@@ -175,6 +186,9 @@ struct ContentView: View {
 
 struct SettingsView: View {
     @AppStorage(ToolLocator.customDirKey) private var customDir = ""
+    @AppStorage(Updater.autoCheckKey) private var autoCheck = true
+    @AppStorage(Updater.autoInstallKey) private var autoInstall = false
+    @ObservedObject private var updater = Updater.shared
 
     var body: some View {
         Form {
@@ -193,8 +207,31 @@ struct SettingsView: View {
             } header: {
                 Text("FFmpeg 路径")
             }
+
+            Section {
+                Toggle("自动检查更新", isOn: $autoCheck)
+                Toggle("自动下载并安装更新", isOn: $autoInstall)
+                    .disabled(!autoCheck)
+                    .help("发现新版本后在后台下载，退出轻片时自动安装")
+                HStack {
+                    Text("当前版本 \(Updater.currentVersion)")
+                    if updater.status != .idle {
+                        Text(updater.status.text).foregroundStyle(.secondary)
+                    }
+                    Spacer()
+                    Button("立即检查") { Task { await updater.check(userInitiated: true) } }
+                        .disabled(updater.status == .checking)
+                }
+            } header: {
+                Text("更新")
+            } footer: {
+                if !updater.canInstallInPlace && Updater.isBundled {
+                    Text("轻片当前不在可写的位置（例如直接从安装包里打开），有新版本时会打开下载页面。")
+                        .font(.caption).foregroundStyle(.secondary)
+                }
+            }
         }
         .formStyle(.grouped)
-        .frame(width: 520, height: 220)
+        .frame(width: 520, height: 400)
     }
 }
